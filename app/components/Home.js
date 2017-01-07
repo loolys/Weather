@@ -17,6 +17,12 @@ class Home extends React.Component {
   handleSubmit(event) {
     console.log(this.state.value);
     event.preventDefault();
+    this.context.router.push({
+      pathname: '/result',
+      query: {
+        city: this.state.value,
+      }
+    });
   }
 
   render() {
@@ -35,6 +41,8 @@ class Home extends React.Component {
   }
 }
 
-
+Home.contextTypes = {
+  router: React.PropTypes.object.isRequired
+};
 
 module.exports = Home;
