@@ -17,12 +17,7 @@ class Home extends React.Component {
   handleSubmit(event) {
     console.log(this.state.value);
     event.preventDefault();
-    this.context.router.push({
-      pathname: '/result',
-      query: {
-        city: this.state.value,
-      }
-    });
+    this.context.router.push('/forecast/' + this.state.value);
   }
 
   render() {

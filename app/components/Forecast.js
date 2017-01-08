@@ -12,7 +12,7 @@ class Forecast extends React.Component {
     this.state = {
       temp: "",
       loading: true,
-      icon0: ""
+      icons: []
     }
   }
 
@@ -33,21 +33,28 @@ class Forecast extends React.Component {
       .then(function (info) {
         console.log(info[0].data);
         this.setState({
-          icon0: info[0].data.list[0].weather[0].icon
+          icons: [info[0].data.list[0].weather[0].icon,
+            info[0].data.list[1].weather[0].icon,
+            info[0].data.list[2].weather[0].icon,
+            info[0].data.list[3].weather[0].icon,
+            info[0].data.list[4].weather[0].icon]
         })
       }.bind(this));
   }
 
   render() {
     let today = new Date();
-    let icon_day0 = this.state.icon0;
-    let img0_url = "http://openweathermap.org/img/w/" + icon_day0 + ".png";
+    let arr = [];
+    for(let i = 0;i < 5; i++){
+      let img = this.state.icons[i];
+      arr.push("http://openweathermap.org/img/w/" + img + ".png");
+    }
     return (
       this.state.loading === true ? <Loading type="spin" color="#000000" /> :
       <ImageRender
         city={this.props.params.city}
         temp={this.state.temp}
-        image0={img0_url} />
+        images={arr} />
     );
   }
 }

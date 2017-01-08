@@ -1,16 +1,35 @@
 const React = require('react');
 const styles = require('../styles/main');
 
-const Main = React.createClass({
-  render: function() {
+class Main extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    console.log(this.state.value);
+    event.preventDefault();
+    this.context.router.push('/forecast/' + this.state.value);
+  }
+
+  render() {
     return (
       <div style={styles.container}>
         <nav className="navbar navbar-default">
           <div className="container-fluid">
             <a className="navbar-brand" href="#">Weather</a>
-            <form className="navbar-form navbar-left" role="search">
+            <form className="navbar-form navbar-left" role="search" onSubmit={this.handleSubmit}>
               <div className="form-group">
-                <input type="text" className="form-control" placeholder="Search Location" />
+                <input type="text" className="form-control" placeholder="Search Location"
+                value={this.state.value} onChange={this.handleChange} />
               </div>
               <button type="submit" className="btn btn-default">Submit</button>
             </form>
@@ -20,6 +39,10 @@ const Main = React.createClass({
       </div>
     );
   }
-});
+}
+
+Main.contextTypes = {
+  router: React.PropTypes.object.isRequired
+}
 
 module.exports = Main;

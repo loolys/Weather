@@ -32,7 +32,7 @@ var styles = {
     margin: "auto",
     paddingLeft: 50,
     paddingRight: 50,
-    background: "#F4F4F4"
+    background: "#F5F5DC"
   }
 }
 
