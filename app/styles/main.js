@@ -18,6 +18,21 @@ var styles = {
   },
   space: {
     marginTop: '10px'
+  },
+  title: {
+    textTransform: "capitalize"
+  },
+  imageText: {
+    display: "inline-block",
+    paddingLeft: 5,
+    paddingRight: 5
+  },
+  jumbo: {
+    maxWidth: 650,
+    margin: "auto",
+    paddingLeft: 50,
+    paddingRight: 50,
+    background: "#F4F4F4"
   }
 }
 

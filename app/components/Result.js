@@ -10,7 +10,7 @@ class Result extends React.Component {
   }
   componentDidMount() {
     console.log(this.props.location.query.city);
-    WeatherApi.getData([this.props.location.query.city])
+    WeatherApi.getCurrent([this.props.location.query.city])
       .then(function (info){
         console.log(info[0].data.main.temp);
         let temp = info[0].data.main.temp
