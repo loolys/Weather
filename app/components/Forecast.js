@@ -5,7 +5,6 @@ const styles = require('../styles/main')
 const ImageRender = require('./ImageRender');
 
 
-
 class Forecast extends React.Component {
   constructor(props) {
     super(props);
@@ -17,6 +16,32 @@ class Forecast extends React.Component {
   }
 
   componentDidMount() {
+    // current weather Api call
+    WeatherApi.getCurrent([this.props.params.city])
+      .then(function (info){
+        // console.log(info[0].data);
+        let temp = info[0].data.main.temp
+        this.setState({
+           temp: temp,
+           loading: false
+          });
+      }.bind(this));
+
+    // 5 day forecast
+    WeatherApi.getDays([this.props.params.city])
+      .then(function (info) {
+        console.log(info[0].data);
+        this.setState({
+          icons: [info[0].data.list[0].weather[0].icon,
+            info[0].data.list[1].weather[0].icon,
+            info[0].data.list[2].weather[0].icon,
+            info[0].data.list[3].weather[0].icon,
+            info[0].data.list[4].weather[0].icon]
+        })
+      }.bind(this));
+  }
+
+  componentWillReceiveProps() {
     // current weather Api call
     WeatherApi.getCurrent([this.props.params.city])
       .then(function (info){
