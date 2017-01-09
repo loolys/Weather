@@ -33,6 +33,9 @@ var styles = {
     paddingLeft: 50,
     paddingRight: 50,
     background: "#F5F5DC"
+  },
+  hover: {
+    cursor: "pointer",
   }
 }
 

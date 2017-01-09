@@ -8,6 +8,7 @@ const Main = require('../components/Main');
 const Home = require("../components/Home");
 const Result = require('../components/Result');
 const Forecast = require('../components/Forecast');
+const Details = require('../containers/DetailsContainer');
 
 const routes = (
   <Router history={hashHistory}>
@@ -15,6 +16,7 @@ const routes = (
       <IndexRoute component={Home} />
       <Route path="/result" component={Result} />
       <Route path="/forecast/:city" component={Forecast} />
+      <Route path="/details/:city" component={Details} />
     </Route>
   </Router>
 );
